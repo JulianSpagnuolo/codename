@@ -90,3 +90,19 @@
 #' @details These data are classic and apparently come from around 2002.
 
 "wu_nouns"
+
+
+#' A Data Frame of Star Trek character names
+#'
+#' This is a data frame of characters from the Star-trek universe to use as an object in generating a code name.
+#'
+#' @format a data frame with 5745 observations and 1 column.
+#' \describe{
+#' \item{\code{value}}{a character vector}
+#' }
+#'
+#' @details data retrieved using stapi from the rtrek pkg.
+
+"st_chars"
+
+

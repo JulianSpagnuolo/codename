@@ -7,7 +7,7 @@
 codename(type = "any", seed)
 }
 \arguments{
-\item{type}{a type of code the user wants. Defaults to "any", but "gods", "ubuntu", and "wu-tang" are available.}
+\item{type}{a type of code the user wants. Defaults to "any", but "gods", "ubuntu", "wu-tang", and "trek" are available.}
 
 \item{seed}{an optional reproducible seed, which can be specified as a character or number.}
 }

@@ -7,10 +7,10 @@
 #'
 #' @author Steven V. Miller
 #'
-#' @param type a type of code the user wants. Defaults to "any", but "gods", "ubuntu", and "wu-tang" are available.
+#' @param type a type of code the user wants. Defaults to "any", but "gods", "ubuntu", "wu-tang", and "trek" are available.
 #' @param seed an optional reproducible seed, which can be specified as a character or number.
 #'
-#'
+#' @export
 #' @examples
 #'
 #' codename()
@@ -40,12 +40,12 @@ codename <- function(type = "any", seed) {
 
   if (type == "any") {
 
-    all_adjs <- rbind(adjectives, xkcd_colors, wu_adjs)
+    all_adjs <- rbind(codename::adjectives, codename::xkcd_colors, codename::wu_adjs)
     all_adjs$value <- tolower(all_adjs$value)
     my_adj <- sample(unique(all_adjs$value), 1)
 
     gods$type <- NULL
-    all_nouns <- rbind(animals, gods, nouns, wu_nouns)
+    all_nouns <- rbind(codename::animals, codename::gods$value, codename::nouns, codename::wu_nouns)
     all_nouns$value <- tolower(all_nouns$value)
     my_noun <- sample(unique(all_nouns$value), 1)
 
@@ -58,9 +58,9 @@ codename <- function(type = "any", seed) {
 
   if (type == "gods") {
 
-    my_noun <- sample(gods$value, 1)
+    my_noun <- sample(codename::gods$value, 1)
 
-    all_adjs <- rbind(adjectives, xkcd_colors)
+    all_adjs <- rbind(codename::adjectives, codename::xkcd_colors)
     my_adj <- sample(unique(all_adjs$value), 1)
 
     the_codename <- paste(my_adj, my_noun)
@@ -73,10 +73,10 @@ codename <- function(type = "any", seed) {
 
   if (type == "ubuntu") {
 
-    my_noun <- sample(animals$value, 1)
+    my_noun <- sample(codename::animals$value, 1)
     sw <- substring(my_noun, 1, 1)
 
-    all_adjs <- rbind(adjectives, xkcd_colors)
+    all_adjs <- rbind(codename::adjectives, codename::xkcd_colors)
     all_adjs <- subset(all_adjs, sapply(strsplit(all_adjs$value, " "), length) == 1)
 
     matchingsw <- subset(all_adjs, tolower(substr(value, 1, 1)) == sw)
@@ -89,8 +89,20 @@ codename <- function(type = "any", seed) {
 
   if (type == "wu-tang") {
 
-    my_adj <- sample(wu_adjs$value, 1)
-    my_noun <- sample(wu_nouns$value, 1)
+    my_adj <- sample(codename::wu_adjs$value, 1)
+    my_noun <- sample(codename::wu_nouns$value, 1)
+
+    the_codename <- paste(my_adj, my_noun)
+    return(the_codename)
+  }
+
+  if (type == "trek") {
+
+
+    all_adjs <- rbind(codename::adjectives, codename::xkcd_colors)
+    all_adjs <- subset(all_adjs, sapply(strsplit(all_adjs$value, " "), length) == 1)
+    my_adj <- sample(unique(all_adjs$value), 1)
+    my_noun <- sample(codename::st_chars$value, 1)
 
     the_codename <- paste(my_adj, my_noun)
     return(the_codename)
